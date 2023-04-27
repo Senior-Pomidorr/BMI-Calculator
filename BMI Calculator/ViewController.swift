@@ -66,6 +66,47 @@ class ViewController: UIViewController {
         button.layer.cornerRadius = 16
         return button
     }()
+    
+    private let heightLabel: UILabel = {
+        let heightLabel = UILabel()
+        heightLabel.translatesAutoresizingMaskIntoConstraints = false
+        heightLabel.text = "Height"
+        heightLabel.textColor = .white
+        heightLabel.numberOfLines = 0
+        heightLabel.font = .boldSystemFont(ofSize: 16)
+        return heightLabel
+    }()
+    
+    private let heightScore: UILabel = {
+        let heightScore = UILabel()
+        heightScore.translatesAutoresizingMaskIntoConstraints = false
+        heightScore.text = "1.5 m"
+        heightScore.textColor = .white
+        heightScore.numberOfLines = 0
+        heightScore.font = .boldSystemFont(ofSize: 16)
+        return heightScore
+    }()
+    
+    private let weightLabel: UILabel = {
+        let weightLabel = UILabel()
+        weightLabel.translatesAutoresizingMaskIntoConstraints = false
+        weightLabel.text = "Weight"
+        weightLabel.textColor = .white
+        weightLabel.numberOfLines = 0
+        weightLabel.font = .boldSystemFont(ofSize: 16)
+        return weightLabel
+    }()
+    
+    private let weightScore: UILabel = {
+        let weightScore = UILabel()
+        weightScore.translatesAutoresizingMaskIntoConstraints = false
+        weightScore.text = "60 kg"
+        weightScore.textColor = .white
+        weightScore.numberOfLines = 0
+        weightScore.font = .boldSystemFont(ofSize: 16)
+        return weightScore
+    }()
+    
 }
 
 
@@ -77,6 +118,10 @@ extension ViewController {
         view.addSubview(sliderOne)
         view.addSubview(sliderTwo)
         view.addSubview(button)
+        view.addSubview(heightLabel)
+        view.addSubview(weightLabel)
+        view.addSubview(heightScore)
+        view.addSubview(weightScore)
         
         NSLayoutConstraint.activate([
             
@@ -88,6 +133,12 @@ extension ViewController {
             labelText.topAnchor.constraint(equalTo: view.topAnchor, constant: 240),
             labelText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             labelText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            heightLabel.bottomAnchor.constraint(equalTo: sliderOne.topAnchor, constant: -6),
+            heightLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            
+            heightScore.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            heightScore.bottomAnchor.constraint(equalTo: sliderOne.topAnchor, constant: -6),
            
             sliderOne.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sliderOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
@@ -96,7 +147,12 @@ extension ViewController {
             sliderOne.widthAnchor.constraint(equalToConstant: 200),
             sliderOne.bottomAnchor.constraint(equalTo: sliderTwo.topAnchor, constant: -30),
             
+            weightLabel.bottomAnchor.constraint(equalTo: sliderTwo.topAnchor, constant: -6),
+            weightLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             
+            weightScore.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            weightScore.bottomAnchor.constraint(equalTo: sliderTwo.topAnchor, constant: -6),
+           
             sliderTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sliderTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             sliderTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
