@@ -28,13 +28,34 @@ class ViewController: UIViewController {
         labelText.translatesAutoresizingMaskIntoConstraints = false
         labelText.text = "CALCULATE YOUR BMI"
         labelText.textColor = .white
-        labelText.font = .boldSystemFont(ofSize: 30)
+        labelText.numberOfLines = 0
+        labelText.font = .boldSystemFont(ofSize: 38)
         return labelText
     }()
     
+    private let sliderOne: UISlider = {
+       let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 50
+        slider.thumbTintColor = .white
+        slider.minimumTrackTintColor = .systemPink
+        slider.maximumTrackTintColor = .systemGray3
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
     
-    
-    
+    private let sliderTwo: UISlider = {
+       let slider = UISlider()
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.value = 50
+        slider.thumbTintColor = .white
+        slider.minimumTrackTintColor = .systemPink
+        slider.maximumTrackTintColor = .systemGray3
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        return slider
+    }()
 }
 
 
@@ -43,6 +64,8 @@ extension ViewController {
     func layout() {
         view.addSubview(imageView)
         view.addSubview(labelText)
+        view.addSubview(sliderOne)
+        view.addSubview(sliderTwo)
         
         NSLayoutConstraint.activate([
             
@@ -55,6 +78,19 @@ extension ViewController {
             labelText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             labelText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
            
+            sliderOne.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            sliderOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            sliderOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            sliderOne.heightAnchor.constraint(equalToConstant: 50),
+            sliderOne.widthAnchor.constraint(equalToConstant: 200),
+            sliderOne.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            
+            sliderTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            sliderTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            sliderTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            sliderTwo.heightAnchor.constraint(equalToConstant: 50),
+            sliderTwo.widthAnchor.constraint(equalToConstant: 200),
+            sliderTwo.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
             
         
         ])
