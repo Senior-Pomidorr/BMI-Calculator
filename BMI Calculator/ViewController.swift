@@ -57,15 +57,21 @@ class ViewController: UIViewController {
         return slider
     }()
     
-    private let button: UIButton = {
+    private lazy var button: UIButton = {
        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("CALCULATE", for: .normal)
         button.tintColor = .white
         button.backgroundColor = .systemPink
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(handleButtonTap), for: .touchUpInside)
         return button
     }()
+    
+    @objc func handleButtonTap() {
+        let calculateVC = CalculateViewController()
+        navigationController?.pushViewController(calculateVC, animated: true)
+    }
     
     private let heightLabel: UILabel = {
         let heightLabel = UILabel()
