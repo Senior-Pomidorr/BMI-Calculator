@@ -56,6 +56,16 @@ class ViewController: UIViewController {
         slider.translatesAutoresizingMaskIntoConstraints = false
         return slider
     }()
+    
+    private let button: UIButton = {
+       let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("CALCULATE", for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .systemPink
+        button.layer.cornerRadius = 16
+        return button
+    }()
 }
 
 
@@ -66,6 +76,7 @@ extension ViewController {
         view.addSubview(labelText)
         view.addSubview(sliderOne)
         view.addSubview(sliderTwo)
+        view.addSubview(button)
         
         NSLayoutConstraint.activate([
             
@@ -83,14 +94,21 @@ extension ViewController {
             sliderOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             sliderOne.heightAnchor.constraint(equalToConstant: 50),
             sliderOne.widthAnchor.constraint(equalToConstant: 200),
-            sliderOne.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            sliderOne.bottomAnchor.constraint(equalTo: sliderTwo.topAnchor, constant: -30),
+            
             
             sliderTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sliderTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             sliderTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             sliderTwo.heightAnchor.constraint(equalToConstant: 50),
             sliderTwo.widthAnchor.constraint(equalToConstant: 200),
-            sliderTwo.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            sliderTwo.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -30),
+            
+            button.topAnchor.constraint(equalTo: sliderTwo.bottomAnchor, constant: 20),
+            button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
+            button.heightAnchor.constraint(equalToConstant: 60)
             
         
         ])
