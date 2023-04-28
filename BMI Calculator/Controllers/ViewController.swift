@@ -8,12 +8,12 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
     }
-
+    
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: Image.backgroindImage)
@@ -33,32 +33,36 @@ class ViewController: UIViewController {
         return labelText
     }()
     
-    private let sliderOne: UISlider = {
-       let slider = UISlider()
+    private lazy var sliderOne: UISlider = {
+        let slider = UISlider()
         slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.value = 50
+        slider.maximumValue = 3.00
+        slider.value = 1.5
         slider.thumbTintColor = .white
         slider.minimumTrackTintColor = .systemPink
         slider.maximumTrackTintColor = .systemGray3
+        slider.isContinuous = true
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(sliderValue), for: [.touchUpInside, .touchUpOutside, .touchCancel])
         return slider
     }()
     
-    private let sliderTwo: UISlider = {
-       let slider = UISlider()
+    private lazy var sliderTwo: UISlider = {
+        let slider = UISlider()
         slider.minimumValue = 0
-        slider.maximumValue = 100
-        slider.value = 50
+        slider.maximumValue = 120
+        slider.value = 60
         slider.thumbTintColor = .white
         slider.minimumTrackTintColor = .systemPink
         slider.maximumTrackTintColor = .systemGray3
+        slider.isContinuous = true
         slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.addTarget(self, action: #selector(sliderValueTwo), for:  [.touchUpInside, .touchUpOutside, .touchCancel])
         return slider
     }()
     
     private lazy var button: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("CALCULATE", for: .normal)
         button.tintColor = .white
@@ -68,10 +72,23 @@ class ViewController: UIViewController {
         return button
     }()
     
-    @objc func handleButtonTap() {
-        let calculateVC = CalculateViewController()
-        navigationController?.pushViewController(calculateVC, animated: true)
+    @objc func handleButtonTap(_ sender: UIButton) {
+        
+        let hight = sliderOne.value
+        let weight = sliderTwo.value
+        
+        if hight == 1.5 && weight == 60 {
+            let calculateVC = CalculateViewController()
+            calculateVC.bmiValue = "0"
+            navigationController?.present(calculateVC, animated: true)
+        } else {
+            let bmi = weight / pow(hight, 2)
+            let calculateVC = CalculateViewController()
+            calculateVC.bmiValue = String(format: "%.1f", bmi)
+            navigationController?.present(calculateVC, animated: true)
+        }
     }
+    
     
     private let heightLabel: UILabel = {
         let heightLabel = UILabel()
@@ -86,7 +103,7 @@ class ViewController: UIViewController {
     private let heightScore: UILabel = {
         let heightScore = UILabel()
         heightScore.translatesAutoresizingMaskIntoConstraints = false
-        heightScore.text = "1.5 m"
+        heightScore.text = "1.50 m"
         heightScore.textColor = .white
         heightScore.numberOfLines = 0
         heightScore.font = .boldSystemFont(ofSize: 16)
@@ -113,8 +130,16 @@ class ViewController: UIViewController {
         return weightScore
     }()
     
+    @objc private func sliderValue(_ sender: UISlider) {
+        let score = String(format: "%.2f", sender.value)
+        heightScore.text = "\(score) m"
+    }
+    
+    @objc private func sliderValueTwo(_ sender: UISlider) {
+        let weight = String(format: "%.0f", sender.value)
+        weightScore.text = "\(weight) Kg"
+    }
 }
-
 
 
 extension ViewController {
@@ -135,7 +160,7 @@ extension ViewController {
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        
+            
             labelText.topAnchor.constraint(equalTo: view.topAnchor, constant: 240),
             labelText.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             labelText.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -145,7 +170,7 @@ extension ViewController {
             
             heightScore.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             heightScore.bottomAnchor.constraint(equalTo: sliderOne.topAnchor, constant: -6),
-           
+            
             sliderOne.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sliderOne.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             sliderOne.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -158,7 +183,7 @@ extension ViewController {
             
             weightScore.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             weightScore.bottomAnchor.constraint(equalTo: sliderTwo.topAnchor, constant: -6),
-           
+            
             sliderTwo.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             sliderTwo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             sliderTwo.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
@@ -171,8 +196,6 @@ extension ViewController {
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             button.heightAnchor.constraint(equalToConstant: 60)
-            
-        
         ])
     }
     

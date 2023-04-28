@@ -1,13 +1,4 @@
 //
-//  CalculateVIewController.swift
-//  BMI Calculator
-//
-//  Created by Daniil Kulikovskiy on 27.04.2023.
-//
-
-import Foundation
-
-//
 //  ViewController.swift
 //  BMI Calculator
 //
@@ -17,6 +8,8 @@ import Foundation
 import UIKit
 
 class CalculateViewController: UIViewController {
+    
+    var bmiValue = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,23 +35,28 @@ class CalculateViewController: UIViewController {
         return labelText
     }()
     
-    private let button: UIButton = {
+    private lazy var button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("RECALCULATE", for: .normal)
         button.tintColor = .white
         button.backgroundColor = .systemPink
         button.layer.cornerRadius = 16
+        button.addTarget(self, action: #selector(backVc), for: .touchUpInside)
         return button
     }()
     
-    private let scoreLabel: UILabel = {
+    @objc func backVc() {
+        self.dismiss(animated: true)
+    }
+    
+    private lazy var scoreLabel: UILabel = {
         let heightLabel = UILabel()
         heightLabel.translatesAutoresizingMaskIntoConstraints = false
-        heightLabel.text = "19.5"
         heightLabel.textColor = .white
         heightLabel.numberOfLines = 0
         heightLabel.font = .boldSystemFont(ofSize: 90)
+        heightLabel.text = bmiValue
         return heightLabel
     }()
     
@@ -103,17 +101,10 @@ extension CalculateViewController {
             descriptionText.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 14),
             descriptionText.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            
-            
-            //            button.topAnchor.constraint(equalTo: sliderTwo.bottomAnchor, constant: 20),
             button.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             button.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             button.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40),
             button.heightAnchor.constraint(equalToConstant: 60)
-            
-            
         ])
     }
-    
-    
 }
