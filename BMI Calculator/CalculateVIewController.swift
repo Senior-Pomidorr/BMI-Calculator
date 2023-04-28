@@ -45,7 +45,7 @@ class CalculateViewController: UIViewController {
     private let button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("CALCULATE", for: .normal)
+        button.setTitle("RECALCULATE", for: .normal)
         button.tintColor = .white
         button.backgroundColor = .systemPink
         button.layer.cornerRadius = 16
