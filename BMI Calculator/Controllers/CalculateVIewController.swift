@@ -50,17 +50,16 @@ class CalculateViewController: UIViewController {
         self.dismiss(animated: true)
     }
     
-    private lazy var scoreLabel: UILabel = {
+    lazy var scoreLabel: UILabel = {
         let heightLabel = UILabel()
         heightLabel.translatesAutoresizingMaskIntoConstraints = false
         heightLabel.textColor = .white
         heightLabel.numberOfLines = 0
         heightLabel.font = .boldSystemFont(ofSize: 90)
-        heightLabel.text = bmiValue
         return heightLabel
     }()
     
-    private let descriptionText: UILabel = {
+     var descriptionText: UILabel = {
         let heightScore = UILabel()
         heightScore.translatesAutoresizingMaskIntoConstraints = false
         heightScore.text = "EAT SOME MORE SNACKS!"

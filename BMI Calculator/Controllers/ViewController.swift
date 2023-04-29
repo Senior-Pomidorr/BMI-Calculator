@@ -9,6 +9,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var calculateBrain = CalculateBrain()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
@@ -36,8 +38,8 @@ class ViewController: UIViewController {
     private lazy var sliderOne: UISlider = {
         let slider = UISlider()
         slider.minimumValue = 0
-        slider.maximumValue = 3.00
-        slider.value = 1.5
+        slider.maximumValue = 2.20
+        slider.value = 1.10
         slider.thumbTintColor = .white
         slider.minimumTrackTintColor = .systemPink
         slider.maximumTrackTintColor = .systemGray3
@@ -57,7 +59,7 @@ class ViewController: UIViewController {
         slider.maximumTrackTintColor = .systemGray3
         slider.isContinuous = true
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.addTarget(self, action: #selector(sliderValueTwo), for:  [.touchUpInside, .touchUpOutside, .touchCancel])
+        slider.addTarget(self, action: #selector(sliderValueTwo), for:  .touchUpInside)
         return slider
     }()
     
@@ -77,14 +79,16 @@ class ViewController: UIViewController {
         let hight = sliderOne.value
         let weight = sliderTwo.value
         
-        if hight == 1.5 && weight == 60 {
+        if hight == 1.10 && weight == 60 {
             let calculateVC = CalculateViewController()
-            calculateVC.bmiValue = "0"
+            calculateVC.scoreLabel.text = "0"
             navigationController?.present(calculateVC, animated: true)
         } else {
-            let bmi = weight / pow(hight, 2)
+            calculateBrain.bmiCalculate(weight: weight, hight: hight)
             let calculateVC = CalculateViewController()
-            calculateVC.bmiValue = String(format: "%.1f", bmi)
+            calculateVC.scoreLabel.text = calculateBrain.getBmiValue()
+            calculateVC.descriptionText.text = calculateBrain.getBmiAdvice()
+            calculateVC.scoreLabel.textColor = calculateBrain.getBmiColor()
             navigationController?.present(calculateVC, animated: true)
         }
     }
@@ -96,17 +100,17 @@ class ViewController: UIViewController {
         heightLabel.text = "Height"
         heightLabel.textColor = .white
         heightLabel.numberOfLines = 0
-        heightLabel.font = .boldSystemFont(ofSize: 16)
+        heightLabel.font = .boldSystemFont(ofSize: 18)
         return heightLabel
     }()
     
     private let heightScore: UILabel = {
         let heightScore = UILabel()
         heightScore.translatesAutoresizingMaskIntoConstraints = false
-        heightScore.text = "1.50 m"
+        heightScore.text = "1.10 m"
         heightScore.textColor = .white
         heightScore.numberOfLines = 0
-        heightScore.font = .boldSystemFont(ofSize: 16)
+        heightScore.font = .boldSystemFont(ofSize: 18)
         return heightScore
     }()
     
@@ -116,7 +120,7 @@ class ViewController: UIViewController {
         weightLabel.text = "Weight"
         weightLabel.textColor = .white
         weightLabel.numberOfLines = 0
-        weightLabel.font = .boldSystemFont(ofSize: 16)
+        weightLabel.font = .boldSystemFont(ofSize: 18)
         return weightLabel
     }()
     
@@ -126,7 +130,7 @@ class ViewController: UIViewController {
         weightScore.text = "60 kg"
         weightScore.textColor = .white
         weightScore.numberOfLines = 0
-        weightScore.font = .boldSystemFont(ofSize: 16)
+        weightScore.font = .boldSystemFont(ofSize: 18)
         return weightScore
     }()
     

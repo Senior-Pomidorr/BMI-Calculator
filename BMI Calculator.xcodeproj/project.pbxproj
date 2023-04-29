@@ -15,6 +15,8 @@
 		0D92734329FADF2D00C2BADB /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92734229FADF2D00C2BADB /* NavigationController.swift */; };
 		0D92734529FAE1EC00C2BADB /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92734429FAE1EC00C2BADB /* Resources.swift */; };
 		0D92734829FB131400C2BADB /* CalculateVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92734729FB131400C2BADB /* CalculateVIewController.swift */; };
+		0D92734B29FD3F5600C2BADB /* CalculateBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92734A29FD3F5600C2BADB /* CalculateBrain.swift */; };
+		0D92734E29FD555500C2BADB /* Bmi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D92734D29FD555500C2BADB /* Bmi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		0D92734229FADF2D00C2BADB /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0D92734429FAE1EC00C2BADB /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
 		0D92734729FB131400C2BADB /* CalculateVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateVIewController.swift; sourceTree = "<group>"; };
+		0D92734A29FD3F5600C2BADB /* CalculateBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateBrain.swift; sourceTree = "<group>"; };
+		0D92734D29FD555500C2BADB /* Bmi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bmi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +66,7 @@
 			children = (
 				0D92732E29FADED600C2BADB /* AppDelegate.swift */,
 				0D92733029FADED600C2BADB /* SceneDelegate.swift */,
+				0D92734C29FD3F5C00C2BADB /* CalculateModel */,
 				0D92734929FC541200C2BADB /* Controllers */,
 				0D92734629FAE2FC00C2BADB /* Resources */,
 				0D92734229FADF2D00C2BADB /* NavigationController.swift */,
@@ -87,6 +92,15 @@
 				0D92734729FB131400C2BADB /* CalculateVIewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0D92734C29FD3F5C00C2BADB /* CalculateModel */ = {
+			isa = PBXGroup;
+			children = (
+				0D92734D29FD555500C2BADB /* Bmi.swift */,
+				0D92734A29FD3F5600C2BADB /* CalculateBrain.swift */,
+			);
+			path = CalculateModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,8 +177,10 @@
 				0D92734329FADF2D00C2BADB /* NavigationController.swift in Sources */,
 				0D92732F29FADED600C2BADB /* AppDelegate.swift in Sources */,
 				0D92734529FAE1EC00C2BADB /* Resources.swift in Sources */,
+				0D92734E29FD555500C2BADB /* Bmi.swift in Sources */,
 				0D92733129FADED600C2BADB /* SceneDelegate.swift in Sources */,
 				0D92734829FB131400C2BADB /* CalculateVIewController.swift in Sources */,
+				0D92734B29FD3F5600C2BADB /* CalculateBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
